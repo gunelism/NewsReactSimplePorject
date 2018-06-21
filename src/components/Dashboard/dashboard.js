@@ -158,7 +158,7 @@ class Dashboard extends Component{
                 });
                 dataToSubmit['date'] = firebase.database.ServerValue.TIMESTAMP
                 dataToSubmit['id'] = article_id+1;
-                dataToSubmit['team'] = parseInt(dataToSubmit['team']);
+                dataToSubmit['team'] = parseInt(dataToSubmit['team'],10);
 
                 firebaseArticles.push(dataToSubmit)
                 .then(article=>{
@@ -182,7 +182,7 @@ class Dashboard extends Component{
     )
     onEditorStateChange = (editorState) =>{
         let contentState = editorState.getCurrentContent();
-        // let rawState = convertToRaw(contentState); 
+        let rawState = convertToRaw(contentState); 
         let html = stateToHTML(contentState);
         this.updateForm({id:'body'},html);
         this.setState({
